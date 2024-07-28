@@ -11,6 +11,7 @@ const {
   POSTGRES_PASSWORD,
   POSTGRES_DB,
 } = process.env;
+
 const HOST = POSTGRES_HOST || 'localhost';
 
 const config: PostgresConnectionOptions = {
