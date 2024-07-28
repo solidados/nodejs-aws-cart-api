@@ -1,4 +1,4 @@
-export enum CartStatuses {
+export enum CartStatus {
   OPEN = 'OPEN',
   STATUS = 'STATUS',
 }
