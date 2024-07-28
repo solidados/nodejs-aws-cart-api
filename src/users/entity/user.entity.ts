@@ -7,10 +7,10 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: 'uuid';
 
-  @Column('name')
+  @Column()
   name: string;
 
-  @Column('password')
+  @Column()
   password: string;
 
   @OneToMany(() => Order, (order) => order.user)
