@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { OrderStatus } from '../models';
 import { Cart } from '../../cart/models/entity/cart.entity';
+import { User } from '../../users/entity/user.entity';
 
 @Entity('order')
 export class Order {
@@ -27,6 +28,13 @@ export class Order {
 
   @Column({ type: 'enum', enum: OrderStatus, default: OrderStatus.created })
   status: OrderStatus;
+
+  @ManyToOne(() => User, (useRealTimers) => useRealTimers.orders, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @ManyToOne(() => Cart, (cart) => cart.order, {
     onDelete: 'CASCADE',

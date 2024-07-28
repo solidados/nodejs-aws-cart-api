@@ -19,6 +19,7 @@ import {
 import { CartStatus } from '../index';
 import { CartItem } from './cart-item.entity';
 import { Order } from '../../../order/entitiy/order.entity';
+import { User } from '../../../users/entity/user.entity';
 
 @Entity('cart')
 export class Cart {
