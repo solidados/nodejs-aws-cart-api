@@ -5,10 +5,19 @@ export enum OrderStatus {
   shipped = 'SHIPPED',
 }
 
+export type Delivery = {
+  firstName: string;
+  lastName: string;
+  address: string;
+  comment: string;
+};
+
+export type OrderDto = Pick<Order, 'user_id' | 'cart_id' | 'delivery'>;
+
 export type Order = {
   id?: string;
-  userId: string;
-  cartId: string;
+  user_id: string;
+  cart_id: string;
   items: CartItem[];
   payment: {
     type: string;

@@ -11,13 +11,14 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { CartStatus } from '../index';
 import { CartItem } from './cart-item.entity';
-import { Order } from '../../../order';
+import { Order } from '../../../order/entitiy/order.entity';
 
 @Entity('cart')
 export class Cart {
@@ -41,7 +42,7 @@ export class Cart {
   })
   updated_at: Date;
 
-  @Column({ type: 'enum', enum: CartStatus })
+  @Column({ type: 'enum', enum: CartStatus, default: CartStatus.OPEN })
   status: CartStatus;
 
   @OneToMany(() => Order, (order) => order.cart)
@@ -50,6 +51,10 @@ export class Cart {
   @OneToMany(() => CartItem, (item) => item.cart)
   items: CartItem[];
 
+  @ManyToOne(() => User, (user) => user.carts, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   @JoinColumn({ name: 'user_id' })
   user: User;
 }
